@@ -1,0 +1,16 @@
+/* stuff that multiple pages components share */
+
+.back-home{
+    margin: 1rem auto;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: darkblue;
+}
+
+.back-home a{
+    /* color: #fff; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 

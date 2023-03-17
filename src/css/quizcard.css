@@ -1,0 +1,10 @@
+.quiz-card{
+    width: clamp(400px, 80vw, 700px);
+    height: 50vh;
+    margin: 1rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+}

@@ -1,0 +1,11 @@
+header{
+    margin: 1rem;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
+    background-color: #eee;
+}

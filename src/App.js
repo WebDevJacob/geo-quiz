@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import FlagQuiz from "./components/FlagQuiz";
+import CapitalQuiz from "./components/CapitalQuiz";
+import NotFound from "./components/NotFound";
+import MapQuiz from "./components/MapQuiz";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/flag" element={<FlagQuiz />} />
+        <Route path="/capital" element={<CapitalQuiz />} />
+        <Route path="/map" element={<MapQuiz />} />
+        <Route path="*" element={<NotFound />} />
+        {/* higher lower capitals
+            karte mit highlight land sagen welches land
+        */}
+      </Routes>
     </div>
   );
 }
