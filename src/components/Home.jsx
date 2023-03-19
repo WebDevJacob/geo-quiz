@@ -1,5 +1,6 @@
 import Nav from "./Nav"
 import "../css/home.css"
+import { Link } from "react-router-dom"
 
 function Home(){
     return (
@@ -13,7 +14,7 @@ function Home(){
             <footer>
                 von Jacob
                 <br />
-                Daten von:
+                <Link to="/data">Daten</Link> von:
                 <br /> 
                 Icons von : Icons8
             </footer>
