@@ -8,4 +8,9 @@ footer{
     width: 100%;
     padding: 1rem;
     background-color: #eee;
+    line-height: 1.5rem;
+}
+
+footer a{
+    display: inline;
 }

@@ -1,7 +1,7 @@
 /* stuff that multiple pages components share */
 
 .back-home{
-    margin: 1rem auto;
+    margin: 0.5rem auto;
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
@@ -9,8 +9,16 @@
 }
 
 .back-home a{
-    /* color: #fff; */
     display: flex;
     justify-content: center;
     align-items: center;
 } 
+
+
+input{
+    width: 100%;
+    margin: 1rem 0;
+    padding: 1rem 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #333;
+}

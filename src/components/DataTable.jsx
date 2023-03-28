@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react"
+import { useState, useContext } from "react"
 import "../css/table.css"
 import BackHome from "./BackHome"
+import { DataContext } from "../App"
 
 function TableRow({data}){
     return(
@@ -10,64 +11,67 @@ function TableRow({data}){
             </td>
             <td>{data.name.common}</td>
             <td>{data.capital}</td>
-            <td>{data.cca3}</td>
             {/* <td>{data.borders.join(", ")}</td> */}
             <td>{new Intl.NumberFormat("de-DE").format(data.population)}</td>
+
+            <td>
+                <a href={data.maps.googleMaps} target="_blank" rel="noreferrer">    
+                Google Maps
+                </a>
+            </td>
+            <td>{data.cca3}</td>
         </tr>
     )
 }
 
-function TableForm(){
+function TableForm({filterFunc}){
     return(
         <div className="table-form">
-            <input type="text" placeholder="Suche..." />
-            <div className="filter-buttons">
-                filter buttons
-            </div>
+            <input type="text" placeholder="Suche..." onChange={(e) => filterFunc(e.target.value)} />        
         </div>
     )
 }
 
 function DataTable(){
 
-    const [data, setData] = useState(null)
+    const data = useContext(DataContext)
+    const [filter, setFilter] = useState("")
 
-    useEffect( ()=> {
-        fetch("https://restcountries.com/v3.1/all")
-        .then(res => res.json())
-        .then(data => {
-            const countryData = []
-
-            for (const country of data) {
-                const { borders, capital, cca3, flags, maps, name, population } = country
-                const relevantProps = {borders, capital, cca3, flags, maps, name, population}
-                countryData.push(relevantProps)
-            }
-
-            setData(countryData)
-        })
-    }, [])
+    const filterList = (text) => {
+        let textCapitalized = text.charAt(0).toUpperCase() + text.slice(1)
+        setFilter(textCapitalized)
+    }
 
     return (
         <div className="table-wrapper">
             <BackHome/>
-            <TableForm/>
+            <TableForm filterFunc={filterList}/>
             <table>
                 <thead>
                     <tr>
                         <th>Flag</th>
                         <th>Name</th>
                         <th>Capital</th>
-                        <th>Code</th>
                         <th>Population</th>
+                        <th>Maps</th>
+                        <th>Code</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {data && data.map((item, index) => {
+                    {data && 
+                    
+                    data
+                    .filter((item) => {
+                        return item.name.common.startsWith(filter) 
+                    })
+                    .map((item, index) => {
                         return <TableRow data={item} key={index} />
                     })}
                 </tbody>
             </table>
+            <button className="back-to-top" onClick={() => window.scrollTo(0, 0)}>
+                Back to Top
+            </button>
         </div>
     )
 }

@@ -12,11 +12,9 @@ function Home(){
             <Nav/>
 
             <footer>
-                von Jacob
-                <br />
-                <Link to="/data">Daten</Link> von:
-                <br /> 
-                Icons von : Icons8
+                von Jacob <br />
+                <Link to="/data">Daten</Link> von <a href="https://restcountries.com/">restcountries</a> <br />
+                Icons von <a href="https://icons8.com/">Icons8</a>
             </footer>
         </div>
     )
