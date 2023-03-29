@@ -1,27 +1,67 @@
+
+.page-wrapper{
+    background-image: linear-gradient(to top, #000000dd, #00000088), url("../assets/countries-flags.png");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.quiz-wrapper{
+    padding: 3rem;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.34);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.36);
+    width: clamp(400px, 90vw, 900px);
+}
+
+
 .quiz-card{
-    width: clamp(400px, 80vw, 700px);
+    width: 90%;
     height: 50vh;
     margin: 1rem auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #222;
     color: #fff;
     border-radius: 0.5rem;
 }
 
-.quiz-card.correct{
-    border: 1px solid #01e296;
+.quiz-card.true{
+    border: 5px solid #01e296;
 }
 .quiz-card.false{
-    border: 1px solid #ee4211;
+    border: 5px solid #ee4211;
+    /* animation: wrong-shake 1s ease-in-out forwards; */
 }
+/* 
+@keyframes wrong-shake {
+    25%{
+        translate: -3px;
+    }
+    50%{
+        translate: 0;
+    }
+    75%{
+        translate: 3px;
+    }
+    100%{
+        translate: 0;
+    }
+} */
 
 
 .flag-img{
-    width: 80%;
-    height: 60%;
+    width: 90%;
+    max-width: 600px;
+    height: auto;
+
 }
 
 .solution{
@@ -31,6 +71,7 @@
 
 .quiz-form{
     width: clamp(400px, 80vw, 700px);
+    width: 90%;
     margin: 1rem auto;
     height: 10vh;
     display: grid;
@@ -45,6 +86,13 @@
 .quiz-form input{
     grid-area: input;
     margin: 0;
+    background-color: transparent;
+    border: 2px solid #000;
+    font-size: 1.125rem;
+}
+
+.quiz-form input:focus{
+    outline: none;
 }
 
 .skip-btn{
@@ -58,4 +106,7 @@
 .quiz-form button{
     padding: 1rem;
     cursor: pointer;
+    background-color: transparent;
+    border: 2px solid #000;
+    border-radius: 0.25rem;
 }

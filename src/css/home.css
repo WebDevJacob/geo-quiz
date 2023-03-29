@@ -1,16 +1,27 @@
+
+.home{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
 header{
-    margin: 1rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 footer{
-    position: fixed;
-    bottom: 0;
+    position: absolute;
+    bottom: 1rem;
     width: 100%;
     padding: 1rem;
-    background-color: #eee;
     line-height: 1.5rem;
+    border-radius: 0.5rem;
 }
 
 footer a{
     display: inline;
+    color: inherit;
+    text-decoration: underline;
 }

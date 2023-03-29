@@ -4,11 +4,11 @@ import { Link } from "react-router-dom"
 
 function Home(){
     return (
-        <div>
+        <div className="home">
             <header>
-            <h1>Willkommen 
-                </h1>
+                <h1>Willkommen</h1>
             </header>
+
             <Nav/>
 
             <footer>

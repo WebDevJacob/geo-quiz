@@ -1,43 +1,49 @@
 import {QuizCard, QuizForm} from "./QuizCard"
 import BackHome from "./BackHome"
-import { useContext, useState } from "react"
-import { DataContext } from "../App"
+import { useState, useRef } from "react"
 
-function FlagQuiz(){
+const getRandomIndex = (max) => {
+    return Math.floor(Math.random() * max)
+}
 
-    const data = useContext(DataContext)
+function FlagQuiz({data}){
 
-    const [currentData, setCurrentData] = useState(data[Math.floor(Math.random() * 250)])
+    const [currentData, setCurrentData] = useState(data[getRandomIndex(250)])
 
+    const [isCorrect, setCorrect] = useState(false)
+
+    const inputElement = useRef()
 
     const setRandomCountryAsCurrent = () => {
-        let randomCountry = null;
-        if(data) randomCountry = data[Math.floor(Math.random() * 250)]
+        let randomCountry = data[getRandomIndex(250)]
         setCurrentData(randomCountry)
+        setCorrect("")
+        inputElement.current.value = "";
+        inputElement.current.focus()
     }
 
-    const isUserGuessCorrect = (text) => {
-        if(text === currentData.name.common) return true
-        return false
-    }
-    
     const checkUserGuess = (guess) => {
-        if(isUserGuessCorrect(guess)){
-            console.log("correct")
+        if(guess === currentData.name.common) {
+            handleCorrectOrFalse(true)
+        } else{
+            handleCorrectOrFalse(false)
         }
-        else{
-            console.log("false")
-        }
+    }
+
+    const handleCorrectOrFalse = (bool) =>{
+        console.log(bool)
+        setCorrect(bool)
     }
 
     return (
-        data &&
-        <div>
-            <BackHome/>
-            <QuizCard type="flag" data={currentData}/>
-            <QuizForm onCheck={checkUserGuess} onSkip={setRandomCountryAsCurrent}/>
+        // data &&
+        <div className="page-wrapper">
+            <div className="quiz-wrapper">
+                <BackHome/>
+                <QuizCard type="flag" data={currentData} isCorrect={isCorrect}/>
+                <QuizForm onCheck={checkUserGuess} onSkip={setRandomCountryAsCurrent} inputRef={inputElement} isCorrect={isCorrect}/>
+            </div>
         </div>
-        
     )
 }
 export default FlagQuiz

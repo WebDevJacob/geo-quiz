@@ -1,7 +1,6 @@
-import { useState, useContext } from "react"
+import { useState } from "react"
 import "../css/table.css"
 import BackHome from "./BackHome"
-import { DataContext } from "../App"
 
 function TableRow({data}){
     return(
@@ -32,9 +31,8 @@ function TableForm({filterFunc}){
     )
 }
 
-function DataTable(){
+function DataTable({data}){
 
-    const data = useContext(DataContext)
     const [filter, setFilter] = useState("")
 
     const filterList = (text) => {
@@ -58,9 +56,7 @@ function DataTable(){
                     </tr>
                 </thead>
                 <tbody>
-                    {data && 
-                    
-                    data
+                    {data
                     .filter((item) => {
                         return item.name.common.startsWith(filter) 
                     })

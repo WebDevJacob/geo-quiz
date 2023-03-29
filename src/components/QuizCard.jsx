@@ -1,24 +1,33 @@
 import "../css/quizcard.css"
 
-function QuizCard({type, data}){
+function QuizCard({type, data, isCorrect}){
     if(type==="flag"){
         return (
-            <div className={`quiz-card ${type}`}>
+            <div className={`quiz-card ${type} ${isCorrect}`}>
                 <img className="flag-img" src={data.flags?.svg} alt="flag of ..."/>
-                <div className="solution">...</div>
+                <div className="solution">
+                    {isCorrect ? data.name.common : " . . . "}
+                </div>
             </div>    
         )
     }
 }
 
+function QuizForm({onCheck, onSkip, inputRef, isCorrect}){
 
+    const handleInputEnter = (e) => {
+        if(e.code === "Enter") onCheck(e.target.value)
+    }
 
-function QuizForm({onCheck, onSkip}){
     return(
         <div className="quiz-form">
-            <input type="text"/>
-            <button className="skip-btn" onClick={onSkip}>Skip</button>
-            <button className="check-btn" onClick={(e) => onCheck(e.target.closest(".quiz-form").querySelector("input").value)}>Check</button>
+            <input type="text" ref={inputRef} onKeyDown={handleInputEnter}/>
+            <button className="skip-btn" onClick={onSkip}>
+                {isCorrect ? "Next" : "Skip"}
+            </button>
+            <button className="check-btn" onClick={(e) => onCheck(e.target.closest(".quiz-form").querySelector("input").value)}>
+                Check
+            </button>
         </div>
     )
 }
