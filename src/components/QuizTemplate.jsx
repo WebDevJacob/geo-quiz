@@ -1,13 +1,12 @@
 import {QuizCard, QuizForm} from "./QuizCard"
 import BackHome from "./BackHome"
 import { useState, useRef } from "react"
-// import QuizTemplate from "./QuizTemplate"
 
 const getRandomIndex = (max) => {
     return Math.floor(Math.random() * max)
 }
 
-function FlagQuiz({data}){
+function QuizTemplate({data, targetValue, type}){
 
     const [currentData, setCurrentData] = useState(data[getRandomIndex(250)])
 
@@ -38,7 +37,7 @@ function FlagQuiz({data}){
     }
 
     const checkUserGuess = (guess) => {
-        if(guess === currentData.name.common) {
+        if(guess === currentData[targetValue]) {
             handleCorrectOrFalse(true)
             setScore({...score, correct: score.correct + 1})
         } else{
@@ -50,20 +49,14 @@ function FlagQuiz({data}){
         setCorrect(bool)
     }
 
-    return (
-        <div className="page-wrapper flag">
+    return(
+        <div className={`page-wrapper ${type}`}>
             <div className="quiz-wrapper">
                 <BackHome/>
-                <QuizCard type="flag" data={currentData} isCorrect={isCorrect} score={score} showAnswer={showAnswer}/>
+                <QuizCard type={type} data={currentData} isCorrect={isCorrect} score={score} showAnswer={showAnswer}/>
                 <QuizForm onCheck={checkUserGuess} onSkip={initNewGame} inputRef={inputElement} isCorrect={isCorrect}/>
             </div>
         </div>
     )
 }
-
-// function FlagQuiz({data}){
-//     <QuizTemplate data={data} targetValue={"['name']['common']"} type="flag"/>
-// }
-export default FlagQuiz
-
-
+export default QuizTemplate

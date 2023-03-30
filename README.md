@@ -16,3 +16,5 @@ lösung zeigen xxx
 input mit enter auslösen xxx
 
 nach richtig raten wird check btn zu next (= skip von funktion her) xxx
+
+quiz template component targetValue fixen

@@ -1,10 +1,8 @@
-import BackHome from "./BackHome"
+import QuizTemplate from "./QuizTemplate"
 
-function CapitalQuiz(){
+function CapitalQuiz({data}){
 return (
-<div>
-    <BackHome/>
-    CapitalQuiz</div>
+    <QuizTemplate data={data} targetValue={"capital?.[0]"} type="capital"/>
 )
 }
 export default CapitalQuiz

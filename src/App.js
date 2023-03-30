@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     fetch(
-      "https://restcountries.com/v3.1/all?fields=name,capital,cca3,borders,flags,maps,population"
+      "https://restcountries.com/v3.1/all?fields=name,capital,cca3,borders,flags,maps,population,area"
     )
       .then((res) => res.json())
       .then((data) => {
@@ -35,7 +35,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/flag" element={<FlagQuiz data={data} />} />
-        <Route path="/capital" element={<CapitalQuiz />} />
+        <Route path="/capital" element={<CapitalQuiz data={data} />} />
         <Route path="/map" element={<MapQuiz />} />
         <Route path="/data" element={<DataTable data={data} />} />
         <Route path="*" element={<NotFound />} />
