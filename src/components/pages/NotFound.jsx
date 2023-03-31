@@ -1,4 +1,4 @@
-import BackHome from "./BackHome"
+import BackHome from "../BackHome"
 
 function NotFound(){
     return (

@@ -1,10 +1,12 @@
 import { useState } from "react"
-import "../css/table.css"
-import BackHome from "./BackHome"
+import "../../css/table.css"
+import BackHome from "../BackHome"
 
 function TableRow({data}){
     return(
         <tr>
+            {/* first td for the row number */}
+            <td></td>
             <td>
                 <img className="td-image" src={data.flags.svg} alt="Flag" />
             </td>
@@ -17,7 +19,6 @@ function TableRow({data}){
                 </a>
             </td>
             <td>{new Intl.NumberFormat("de-DE").format(data.area)} km²</td>
-            <td>{data.cca3}</td>
         </tr>
     )
 }
@@ -90,13 +91,13 @@ function DataTable({data}){
             <table>
                 <thead>
                     <tr>
+                        <th>Nr</th>
                         <th>Flagge</th>
                         <th>Name</th>
                         <th>Hauptstadt</th>
                         <th>Einwohner</th>
                         <th>Karte</th>
                         <th>Fläche</th>
-                        <th>Code</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -27,7 +27,6 @@
     position: relative;
 }
 
-
 .quiz-card{
     width: 90%;
     height: 50vh;
@@ -40,28 +39,20 @@
     border-radius: 0.5rem;
 }
 
-.quiz-card.true{
-    border: 5px solid #01e296;
+.quiz-card::before{
+    font-size: 4rem;
+    position: absolute;
+    top: 40%;
+    right: 0.5rem;
+    transform: translateY(-50%);
 }
-.quiz-card.false{
-    border: 5px solid #ee4211;
-    /* animation: wrong-shake 1s ease-in-out forwards; */
+
+.quiz-card.true::before{
+    content: "✅";
 }
-/* 
-@keyframes wrong-shake {
-    25%{
-        translate: -3px;
-    }
-    50%{
-        translate: 0;
-    }
-    75%{
-        translate: 3px;
-    }
-    100%{
-        translate: 0;
-    }
-} */
+.quiz-card.false::before{
+    content: "❌";
+}
 
 .score{
     position: absolute;
@@ -111,7 +102,7 @@
 .quiz-form input{
     grid-area: input;
     margin: 0;
-    background-color: transparent;
+    background-color: #ffffff99;
     border: 2px solid #000;
     font-size: 1.125rem;
 }
@@ -131,7 +122,7 @@
 .quiz-form button{
     padding: 1rem;
     cursor: pointer;
-    background-color: transparent;
+    background-color: #ffffff99;
     border: 2px solid #000;
     border-radius: 0.25rem;
 }

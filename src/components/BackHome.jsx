@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import "../css/shared.css"
+import "../css/index.css"
 
 function BackHome(){
 return (

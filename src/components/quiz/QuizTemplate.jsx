@@ -1,23 +1,35 @@
-import {QuizCard, QuizForm} from "./QuizCard"
-import BackHome from "./BackHome"
 import { useState, useRef } from "react"
-// import QuizTemplate from "./QuizTemplate"
+import { useParams } from "react-router-dom"
+
+import { locations } from "../../App"
+import NotFound from "../pages/NotFound"
+
+import BackHome from "../BackHome"
+import {QuizCard, QuizForm} from "./QuizCard"
 
 const getRandomIndex = (max) => {
     return Math.floor(Math.random() * max)
 }
 
-function FlagQuiz({data}){
-
+function QuizTemplate({data}){
+    
     const [currentData, setCurrentData] = useState(data[getRandomIndex(250)])
 
-    const [isCorrect, setCorrect] = useState(false)
+    const [isCorrect, setCorrect] = useState("")
     const [showAnswer, setShowAnswer] = useState(false)
-
-
     const [score, setScore] = useState({correct: 0, total: 0})
 
     const inputElement = useRef()
+
+    // fallback if route does not exist 
+    const { type } = useParams()
+    const location = locations.find(location => location === type)
+    if(!location) return <NotFound />
+
+    const getTargetDataPropertyFromType = (type) =>{
+        if(type === "flag") return currentData.name.common
+        else if(type === "capital") return currentData.capital?.[0]
+    }
 
     const initNewGame = (skipped) => {
         let delay = 0;
@@ -38,32 +50,22 @@ function FlagQuiz({data}){
     }
 
     const checkUserGuess = (guess) => {
-        if(guess === currentData.name.common) {
-            handleCorrectOrFalse(true)
+        if(guess === getTargetDataPropertyFromType(type)) {
+            setCorrect(true)
             setScore({...score, correct: score.correct + 1})
         } else{
-            handleCorrectOrFalse(false)
+            setCorrect(false)
         }
     }
 
-    const handleCorrectOrFalse = (bool) =>{
-        setCorrect(bool)
-    }
-
-    return (
-        <div className="page-wrapper flag">
+    return(
+        <div className={`page-wrapper ${type}`}>
             <div className="quiz-wrapper">
                 <BackHome/>
-                <QuizCard type="flag" data={currentData} isCorrect={isCorrect} score={score} showAnswer={showAnswer}/>
+                <QuizCard type={type} data={currentData} isCorrect={isCorrect} score={score} showAnswer={showAnswer}/>
                 <QuizForm onCheck={checkUserGuess} onSkip={initNewGame} inputRef={inputElement} isCorrect={isCorrect}/>
             </div>
         </div>
     )
 }
-
-// function FlagQuiz({data}){
-//     <QuizTemplate data={data} targetValue={"['name']['common']"} type="flag"/>
-// }
-export default FlagQuiz
-
-
+export default QuizTemplate

@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import FlagQuiz from "./components/FlagQuiz";
-import CapitalQuiz from "./components/CapitalQuiz";
-import NotFound from "./components/NotFound";
-import MapQuiz from "./components/MapQuiz";
-import DataTable from "./components/DataTable";
-
 import { useState, useEffect } from "react";
+
+import Home from "./components/pages/Home";
+import NotFound from "./components/pages/NotFound";
+import DataTable from "./components/pages/DataTable";
+import QuizTemplate from "./components/quiz/QuizTemplate";
+
+export const locations = ["flag", "capital", "map"];
 
 function App() {
   const [data, setData] = useState(null);
@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     fetch(
-      "https://restcountries.com/v3.1/all?fields=name,capital,cca3,borders,flags,maps,population,area"
+      "https://restcountries.com/v3.1/all?fields=name,capital,flags,maps,population,area"
     )
       .then((res) => res.json())
       .then((data) => {
@@ -34,14 +34,14 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/flag" element={<FlagQuiz data={data} />} />
-        <Route path="/capital" element={<CapitalQuiz data={data} />} />
-        <Route path="/map" element={<MapQuiz />} />
+
+        <Route path="/quiz">
+          <Route path=":type" element={<QuizTemplate data={data} />} />
+        </Route>
+
         <Route path="/data" element={<DataTable data={data} />} />
         <Route path="*" element={<NotFound />} />
-        {/* higher lower capitals
-              karte mit highlight land sagen welches land
-            */}
+        {/* higher lower capitals */}
       </Routes>
     </div>
   );

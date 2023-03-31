@@ -1,5 +1,5 @@
-import Nav from "./Nav"
-import "../css/home.css"
+import Nav from "../Nav"
+import "../../css/home.css"
 import { Link } from "react-router-dom"
 
 function Home(){
