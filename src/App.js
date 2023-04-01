@@ -6,7 +6,7 @@ import NotFound from "./components/pages/NotFound";
 import DataTable from "./components/pages/DataTable";
 import QuizTemplate from "./components/quiz/QuizTemplate";
 
-export const locations = ["flag", "capital", "map"];
+export const locations = ["flag", "capital"];
 
 function App() {
   const [data, setData] = useState(null);
@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     fetch(
-      "https://restcountries.com/v3.1/all?fields=name,capital,flags,maps,population,area"
+      "https://restcountries.com/v3.1/all?fields=name,capital,flags,maps,population,area,translations,borders"
     )
       .then((res) => res.json())
       .then((data) => {
@@ -41,7 +41,7 @@ function App() {
 
         <Route path="/data" element={<DataTable data={data} />} />
         <Route path="*" element={<NotFound />} />
-        {/* higher lower capitals */}
+        {/* higher lower population  und area (random index für erstes und zweiter index dann +- 10 damit schwere frage)*/}
       </Routes>
     </div>
   );

@@ -6,16 +6,14 @@ function Home(){
     return (
         <div className="home">
             <header>
-                <h1>Willkommen</h1>
+                <h1>Geo Quiz App</h1>
+                <Link to="/data" title="Tabelle mit Daten" className="data-link">
+                    Datentabelle
+                </Link>
             </header>
 
             <Nav/>
 
-            <footer>
-                von Jacob <br />
-                <Link to="/data">Daten</Link> von <a href="https://restcountries.com/">restcountries</a> <br />
-                Icons von <a href="https://icons8.com/">Icons8</a>
-            </footer>
         </div>
     )
 }

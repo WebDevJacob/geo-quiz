@@ -11,7 +11,7 @@ function QuizCardContent({data, type}){
             <div className="card-text">
                 Hauptstadt von 
                 <span className="card-text-big">
-                    {data.name.common}
+                    {data.translations.deu.common}
                 </span>
             </div>
         )
@@ -21,7 +21,7 @@ function QuizCardContent({data, type}){
 function QuizCard({type, data, isCorrect, score, showAnswer}){
 
     const getAnswer = (type) =>{
-        if(type === "flag") return data.name.common
+        if(type === "flag") return data.translations.deu.common
         if(type === "capital") return data.capital?.[0]
     }
 

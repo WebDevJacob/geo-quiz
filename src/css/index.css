@@ -48,10 +48,15 @@ a{
 }
 
 .back-home a{
+  font-size: 1.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
 } 
+
+.back-home a:visited{
+  color: #000;
+}
 
 input{
   width: 100%;

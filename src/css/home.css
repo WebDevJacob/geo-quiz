@@ -3,7 +3,9 @@
     max-width: 1000px;
     height: 100vh;
     margin: 0 auto;
-    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 header{
@@ -13,18 +15,22 @@ header{
     align-items: center;
 }
 
-footer{
-    position: absolute;
-    bottom: 1rem;
-    width: 100%;
-    padding: 1rem;
-    line-height: 1.5rem;
-    border-radius: 0.5rem;
-    background-color: #f0f0f0;
+.data-link {
+    width: fit-content;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: #444;
+    color: #fff;
+
+    border: none;
+    border-radius: 50rem;
 }
 
-footer a{
-    display: inline;
-    color: inherit;
-    text-decoration: underline;
+.data-link span{
+    font-size: 1.5rem;
 }

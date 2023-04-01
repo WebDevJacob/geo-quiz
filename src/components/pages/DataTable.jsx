@@ -87,7 +87,13 @@ function DataTable({data}){
     return (
         <div className="table-wrapper">
             <BackHome/>
+           
             <TableForm filterFunc={filterList} sortFunc={sortList}/>
+           
+            <div className="credit-link">
+                Daten von: <a href="https://restcountries.com/">restcountries.com</a>
+            </div>
+            
             <table>
                 <thead>
                     <tr>

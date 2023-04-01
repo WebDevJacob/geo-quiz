@@ -16,6 +16,9 @@
 
 .quiz-wrapper{
     padding: 3rem;
+    width: clamp(300px, 90vw, 900px);
+    position: relative;
+
     /* From https://css.glass */
     background: rgba(255, 255, 255, 0.34);
     border-radius: 16px;
@@ -23,8 +26,7 @@
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
     border: 1px solid rgba(255, 255, 255, 0.36);
-    width: clamp(400px, 90vw, 900px);
-    position: relative;
+    
 }
 
 .quiz-card{
@@ -83,6 +85,7 @@
     margin: 2rem 0;
     font-size: 1.5rem;
     color: #000;
+    text-align: center;
 }
 
 .quiz-form{

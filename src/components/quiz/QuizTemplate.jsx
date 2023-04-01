@@ -17,7 +17,7 @@ function QuizTemplate({data}){
 
     const [isCorrect, setCorrect] = useState("")
     const [showAnswer, setShowAnswer] = useState(false)
-    const [score, setScore] = useState({correct: 0, total: 0})
+    const [score, setScore] = useState({correct: 0, total: 1})
 
     const inputElement = useRef()
 
@@ -27,7 +27,7 @@ function QuizTemplate({data}){
     if(!location) return <NotFound />
 
     const getTargetDataPropertyFromType = (type) =>{
-        if(type === "flag") return currentData.name.common
+        if(type === "flag") return currentData.translations.deu.common
         else if(type === "capital") return currentData.capital?.[0]
     }
 
@@ -50,7 +50,7 @@ function QuizTemplate({data}){
     }
 
     const checkUserGuess = (guess) => {
-        if(guess === getTargetDataPropertyFromType(type)) {
+        if(guess.toLowerCase() === getTargetDataPropertyFromType(type).toLowerCase()) {
             setCorrect(true)
             setScore({...score, correct: score.correct + 1})
         } else{
