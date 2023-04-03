@@ -41,3 +41,9 @@ kriegt man Liste von allen Ländern die an Land (hier DE) anschließen
 die border liste (alles nach ?codes) ist im normalen api call drin also ez möglich
 
 aber neues QuizTemplate Nötig wahrscheinlich
+
+TODO
+borders quiz initnegame bugs fixen
+nochmal translations überprüfen
+
+user input mit regex überprüfen (für sachen wie bindestriche oder accents)

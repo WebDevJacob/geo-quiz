@@ -5,11 +5,14 @@ import Home from "./components/pages/Home";
 import NotFound from "./components/pages/NotFound";
 import DataTable from "./components/pages/DataTable";
 import QuizTemplate from "./components/quiz/QuizTemplate";
+import BordersQuiz from "./components/quiz/BordersQuiz";
 
 export const locations = ["flag", "capital"];
 
 function App() {
   const [data, setData] = useState(null);
+
+  const [borderData, setBorderData] = useState(null);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,6 +25,12 @@ function App() {
           a.name.common.localeCompare(b.name.common)
         );
         setData(dataSortedAlphabetically);
+
+        let countriesWithBorderEntries = data.filter((country) => {
+          return country.borders.length > 0;
+        });
+        setBorderData(countriesWithBorderEntries);
+
         setLoading(false);
       });
   }, []);
@@ -37,6 +46,10 @@ function App() {
 
         <Route path="/quiz">
           <Route path=":type" element={<QuizTemplate data={data} />} />
+          <Route
+            path="borders"
+            element={<BordersQuiz data={borderData} type="borders" />}
+          />
         </Route>
 
         <Route path="/data" element={<DataTable data={data} />} />

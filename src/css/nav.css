@@ -30,6 +30,10 @@ nav ul{
     background-image: linear-gradient(to right, #000000dd, #00000088), url("../assets/countries-flags.png");
     background-size: 150%;
 }
+.nav-item:nth-child(3){
+    background-image: linear-gradient(to right, #000000dd, #00000088), url("../assets/political-white-transparent-thin-world-map.png");
+    background-size: 150%;
+}
 
 .nav-item:hover{
     animation-play-state: running;

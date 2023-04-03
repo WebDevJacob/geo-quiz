@@ -1,6 +1,6 @@
 import "../../css/quizcard.css"
 
-function QuizCardContent({data, type}){
+function QuizCardContent({data, type, length}){
 
     if(type==="flag"){
         return <img className="flag-img" src={data.flags?.svg} alt="flag of ..."/>
@@ -48,10 +48,10 @@ function QuizForm({onCheck, onSkip, inputRef, isCorrect}){
         <div className="quiz-form">
             <input type="text" ref={inputRef} onKeyDown={handleInputEnter}/>
             <button className="skip-btn" onClick={() => onSkip(isCorrect ? false : true)}>
-                {isCorrect ? "Next" : "Skip"}
+                {isCorrect ? "Nächstes" : "Land überspringen"}
             </button>
-            <button className="check-btn" onClick={(e) => onCheck(e.target.closest(".quiz-form").querySelector("input").value)}>
-                Check
+            <button className="check-btn" onClick={(e) => onCheck(inputRef.current.value)}>
+                Überprüfen (oder <kbd>Enter</kbd>)
             </button>
         </div>
     )

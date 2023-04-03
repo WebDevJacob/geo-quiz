@@ -16,6 +16,7 @@ function Nav(){
             <ul>
                 <NavItem route={"/quiz/flag"} title="Flaggen Quiz" />
                 <NavItem route={"/quiz/capital"} title="Hauptstädte Quiz" />
+                <NavItem route={"/quiz/borders"} title="Ländergrenzen Quiz" />
                 {/* <NavItem route={"/quiz/map"} title="Länder auf Karte zuordnen" /> */}
             </ul>
         </nav>

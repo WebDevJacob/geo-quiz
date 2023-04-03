@@ -14,6 +14,10 @@
     background-image: linear-gradient(to top, #000000dd, #00000088), url("../assets/political-white-transparent-thin-world-map.png");
 }
 
+.page-wrapper.borders{
+    background-image: linear-gradient(to top, #000000dd, #00000088), url("../assets/political-white-transparent-thin-world-map.png");
+}
+
 .quiz-wrapper{
     padding: 3rem;
     width: clamp(300px, 90vw, 900px);
