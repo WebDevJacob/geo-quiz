@@ -1,8 +1,8 @@
 # Geo Quiz App
 
-Daten von [restcountries.com]("https://restcountries.com")
+Daten von [restcountries.com](https://restcountries.com)
 
-Icons von [react icons]("https://react-icons.github.io/react-icons/")
+Icons von [react icons](https://react-icons.github.io/react-icons/)
 
 future ideas:
 
