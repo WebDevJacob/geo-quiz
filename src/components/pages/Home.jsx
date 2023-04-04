@@ -8,7 +8,7 @@ function Home(){
             <header>
                 <h1>Geo Quiz App</h1>
                 <Link to="/data" title="Tabelle mit Daten" className="data-link">
-                    Datentabelle
+                    Datentabelle 
                 </Link>
             </header>
 

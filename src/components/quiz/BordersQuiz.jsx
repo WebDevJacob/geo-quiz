@@ -7,11 +7,11 @@ const getRandomIndex = (max) => {
     return Math.floor(Math.random() * max)
 }
 
-function BordersQuizCard({type, currentCountryName, borders, isCorrect, score, showAnswer}){
+function BordersQuizCard({type, currentCountryName, borders, isCorrect, showAnswer}){
     
     const getBordersAnswer = () => {
         return (
-            <>
+            <ul className="not-guessed-list">
                 {borders
                 .filter(country => {
                     return country.wasGuessedCorrectly === false
@@ -19,7 +19,7 @@ function BordersQuizCard({type, currentCountryName, borders, isCorrect, score, s
                 .map((country, index) => {
                     return <li key={index}>{country.value}</li>
                 })}
-            </>
+            </ul>
         )
     }
 
@@ -35,13 +35,12 @@ function BordersQuizCard({type, currentCountryName, borders, isCorrect, score, s
                         .filter(country => {
                             return country.wasGuessedCorrectly
                         })
-                        .map(country => {
-                            return <li>{country.value}</li>
+                        .map((country, index) => {
+                            return <li key={index}>{country.value}</li>
                         })}
                     </ul>
                 </div>
 
-                {/* <div className="score">{score.correct}/{score.total}</div> */}
                 <div className="solution">
                     {showAnswer ? getBordersAnswer() : " . . . "}
                 </div>
@@ -51,14 +50,13 @@ function BordersQuizCard({type, currentCountryName, borders, isCorrect, score, s
 
 function BordersQuiz({data, type}){
 
-    const [currentData, setCurrentData] = useState(data[getRandomIndex(data.length)])
+    const [currentData, setCurrentData] = useState(data[getRandomIndex(165)])
     const [currentBorders, setCurrentBorders] = useState(null)
 
     const [isCorrect, setCorrect] = useState("")
     const [allBordersGuessed, setAllBordersGuessed] = useState(false)
 
     const [showAnswer, setShowAnswer] = useState(false)
-    // const [score, setScore] = useState({correct: 0, total: currentBorders.length})
 
     const inputElement = useRef()
 
@@ -89,10 +87,9 @@ function BordersQuiz({data, type}){
         setShowAnswer(true);
 
         setTimeout(() => {
-            let randomCountry = data[getRandomIndex(250)]
+            let randomCountry = data[getRandomIndex(data.length)]
             setCurrentData(randomCountry)
             setCorrect("")
-            // setScore({...score, total: currentBorders.length})
             setShowAnswer(false)
 
             setAllBordersGuessed(false)
@@ -120,7 +117,6 @@ function BordersQuiz({data, type}){
 
             let allGuessed = checkIfAllBordersGuessed()
             if(allGuessed) setAllBordersGuessed(true)
-            // setScore({...score, correct: score.correct + 1})
         } else{
             setCorrect(false)
         }
@@ -143,5 +139,4 @@ function BordersQuiz({data, type}){
     )
 }
 
-// score={score}
 export default BordersQuiz

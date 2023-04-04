@@ -1,6 +1,9 @@
 .table-wrapper{
-    margin: 1rem auto;
-    width: clamp(200px, 90vw ,1200px);
+    padding: 1rem;
+    margin: 0 auto;
+    width: clamp(200px, 90vw, 1200px);
+    background-color: #f7f7f7;
+    min-height: 100vh;
 }
 
 .credit-link{
@@ -21,9 +24,27 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    overflow-x: auto;
+    gap: 0.5rem;
+    white-space: nowrap;
+    padding:  0.5rem 0 ;
+}
+
+.sort-btns::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+.sort-btns::-webkit-scrollbar-track {
+    background: #e3e3e3;
+    border-radius: 50rem; 
+}
+.sort-btns::-webkit-scrollbar-thumb {
+    background: rgb(0, 0, 91); 
+    border-radius:10px;
 }
 
 .sort{
+    flex-grow: 1;
     padding: 0.75rem;
     background-color: transparent;
     border: 1px solid black;
@@ -35,16 +56,23 @@
     background-color: #ddd;
 }
 
+.sort.active{
+    background-color: rgb(0, 0, 91);
+    color: #fff;
+}
+
 table{
     padding: 0.5rem;
     border-collapse: collapse;
     counter-reset: row;
+    width: 100%;
 }
 
 thead{
     position: sticky;
     top: 0rem;
-    background-color: #ccc;
+    background-color: rgb(0, 0, 91);
+    color: #fff;
 }
 
 th{
@@ -61,6 +89,10 @@ tr{
     border: 1px solid #333;
 }
 
+tr:nth-child(2n){
+    background-color: hsl(240, 100%, 95%);
+}
+
 td:first-child{
     position: relative;
 }
@@ -74,13 +106,12 @@ td:first-child:before{
     transform: translate(-50%,-50%);
 }
 
-tr:nth-child(2n){
-    background-color: #ddd;
-}
 
 th, td{   
     padding: 0.75rem;
+    text-align: center;
 }
+
 .td-image{
     width: 3rem;
     height: 1.5rem;
@@ -93,11 +124,12 @@ th, td{
     border-radius: 0.25rem;
     border: none;
     display: block;
-    background-color: darkblue;
+    background-color: rgb(0, 0, 91);
     padding: 1rem;
     color: #fff;
     cursor: pointer;
     position: fixed;
     right: 1rem;
     bottom: 1rem;
+    font-size: 1.2rem;
 }

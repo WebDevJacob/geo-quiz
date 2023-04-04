@@ -1,6 +1,7 @@
 import { useState } from "react"
 import "../../css/table.css"
 import BackHome from "../BackHome"
+import {  MdArrowUpward } from "react-icons/md"
 
 function TableRow({data}){
     return(
@@ -10,12 +11,12 @@ function TableRow({data}){
             <td>
                 <img className="td-image" src={data.flags.svg} alt="Flag" />
             </td>
-            <td>{data.name.common}</td>
+            <td>{data.translations.deu.common}</td>
             <td>{data.capital}</td>
             <td>{new Intl.NumberFormat("de-DE").format(data.population)}</td>
             <td>
                 <a href={data.maps.googleMaps} target="_blank" rel="noreferrer">    
-                Map
+                Karte
                 </a>
             </td>
             <td>{new Intl.NumberFormat("de-DE").format(data.area)} km²</td>
@@ -23,26 +24,30 @@ function TableRow({data}){
     )
 }
 
-function TableForm({filterFunc, sortFunc}){
+function TableForm({filterFunc, sortFunc, activeSortBtn}){
+    const isActive = (index) =>{
+        return index === activeSortBtn ? "active" : ""
+    }
+
     return(
         <div className="table-form">
             <input type="text" placeholder="Suche nach Land oder Hauptstadt..." onChange={(e) => filterFunc(e.target.value)} />        
             <div className="sort-btns">
                 <span>Sortiere nach: </span>
-                <button className="sort pop-desc" onClick={() => sortFunc("pop-desc")}>
-                    Bevölkerung abst.
+                <button className={`sort default ${isActive(0)}`} onClick={() => sortFunc()}>
+                    Alphabet
                 </button>
-                <button className="sort pop-asc" onClick={() => sortFunc("pop-asc")}>
-                    Bevölkerung aufst.
+                <button className={`sort pop-desc ${isActive(1)}`} onClick={() => sortFunc("pop-desc")}>
+                    Bevölkerung absteigend
                 </button>
-                <button className="sort area-desc" onClick={() => sortFunc("area-desc")}>
-                    Fläche abst.
+                <button className={`sort pop-asc ${isActive(2)}`} onClick={() => sortFunc("pop-asc")}>
+                    Bevölkerung aufsteigend
                 </button>
-                <button className="sort area-asc" onClick={() => sortFunc("area-asc")}>
-                    Fläche aufst.
+                <button className={`sort area-desc ${isActive(3)}`} onClick={() => sortFunc("area-desc")}>
+                    Fläche absteigend
                 </button>
-                <button className="sort default" onClick={() => sortFunc()}>
-                    Alphabetisch
+                <button className={`sort area-asc ${isActive(4)}`} onClick={() => sortFunc("area-asc")}>
+                    Fläche aufsteigend
                 </button>
             </div>
         </div>
@@ -53,6 +58,7 @@ function DataTable({data}){
 
     const [sortedData, setSortedData] = useState(data)
     const [filter, setFilter] = useState("")
+    const [activeSortBtn, setActiveSortBtn] = useState(0)
 
     const filterList = (text) => {
         let textCapitalized = text.charAt(0).toUpperCase() + text.slice(1)
@@ -63,22 +69,27 @@ function DataTable({data}){
         const copy =[...sortedData]
 
         switch (type) {
-            case "pop-asc":
-                copy.sort((a,b) => a.population - b.population)
-                break;
             case "pop-desc":
                 copy.sort((a,b) => b.population - a.population)
+                setActiveSortBtn(1)
                 break;
-        
-            case "area-asc":
-                copy.sort((a,b) => a.area - b.area)
+            case "pop-asc":
+                copy.sort((a,b) => a.population - b.population)
+                setActiveSortBtn(2)
                 break;
+
             case "area-desc":
                 copy.sort((a,b) => b.area - a.area)
+                setActiveSortBtn(3)
+                break;
+            case "area-asc":
+                copy.sort((a,b) => a.area - b.area)
+                setActiveSortBtn(4)
                 break;
 
             default:
                 copy.sort((a,b) => a.name.common.localeCompare(b.name.common))
+                setActiveSortBtn(0)
                 break;
         }
         setSortedData(copy)
@@ -88,7 +99,7 @@ function DataTable({data}){
         <div className="table-wrapper">
             <BackHome/>
            
-            <TableForm filterFunc={filterList} sortFunc={sortList}/>
+            <TableForm filterFunc={filterList} sortFunc={sortList} activeSortBtn={activeSortBtn}/>
            
             <div className="credit-link">
                 Daten von: <a href="https://restcountries.com/">restcountries.com</a>
@@ -97,8 +108,8 @@ function DataTable({data}){
             <table>
                 <thead>
                     <tr>
-                        <th>Nr</th>
-                        <th>Flagge</th>
+                        <th> </th>
+                        <th></th>
                         <th>Name</th>
                         <th>Hauptstadt</th>
                         <th>Einwohner</th>
@@ -109,7 +120,7 @@ function DataTable({data}){
                 <tbody>
                     {sortedData
                     .filter((item) => {
-                        return item.name.common.startsWith(filter) || item.capital?.[0]?.startsWith?.(filter)
+                        return item.translations.deu.common.startsWith(filter) || item.capital?.[0]?.startsWith?.(filter)
                     })
                     .map((item, index) => {
                         return <TableRow data={item} key={index} />
@@ -117,7 +128,7 @@ function DataTable({data}){
                 </tbody>
             </table>
             <button className="back-to-top" onClick={() => window.scrollTo(0, 0)}>
-                ⬆️
+                <MdArrowUpward/>
             </button>
         </div>
     )

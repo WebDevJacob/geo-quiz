@@ -15,7 +15,6 @@ body {
 }
 
 .App{
-  height: 100vh;
   margin: 0 auto;
   position: relative;
 }
@@ -64,4 +63,14 @@ input{
   padding: 1rem 0.5rem;
   border-radius: 0.25rem;
   border: 1px solid #333;
+}
+
+.error{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  line-height: 3rem;
+  font-size: 1.5rem;
 }

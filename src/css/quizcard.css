@@ -92,6 +92,10 @@
     text-align: center;
 }
 
+.not-guessed-list{
+    color: darkred;
+}
+
 .quiz-form{
     width: clamp(400px, 80vw, 700px);
     width: 90%;

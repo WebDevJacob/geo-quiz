@@ -13,6 +13,8 @@ nav ul{
     background-color: linear-gradient(to right, #000000dd, #00000088);
     animation: move-bg-image 15s linear infinite forwards;
     animation-play-state: paused;
+    box-shadow: 3px 3px 10px 2px #999;
+
 }
 
 .nav-item a{
@@ -27,7 +29,7 @@ nav ul{
     background-size: 150%;
 }
 .nav-item:nth-child(2){
-    background-image: linear-gradient(to right, #000000dd, #00000088), url("../assets/countries-flags.png");
+    background-image: linear-gradient(to right, #000000dd, #00000088), url("../assets/world-map-with-countries-and-capitals.jpg");
     background-size: 150%;
 }
 .nav-item:nth-child(3){
